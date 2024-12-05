@@ -1,16 +1,25 @@
-﻿namespace Views
+﻿using static System.Net.Mime.MediaTypeNames;
+using System.Windows.Forms;
+using System.Xml.Linq;
+
+namespace Views
 {
     partial class Form1
     {
-        /// <summary>
-        ///  Required designer variable.
-        /// </summary>
         private System.ComponentModel.IContainer components = null;
+        private DataGridView dataGridView1;
+        private DataGridViewTextBoxColumn Nom;
+        private DataGridViewTextBoxColumn Prix;
+        private DataGridViewTextBoxColumn Quantite;
+        private DataGridViewTextBoxColumn Categorie;
+        private DataGridViewButtonColumn ViewColumn;
+        private Label label1;
+        private Button btnAddArticle;
 
-        /// <summary>
-        ///  Clean up any resources being used.
-        /// </summary>
-        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        // Dans la méthode InitializeComponent() :
+        
+
+
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
@@ -20,99 +29,98 @@
             base.Dispose(disposing);
         }
 
-        #region Windows Form Designer generated code
-
-        /// <summary>
-        ///  Required method for Designer support - do not modify
-        ///  the contents of this method with the code editor.
-        /// </summary>
         private void InitializeComponent()
         {
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.Nom = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Prix = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Quantite = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Categorie = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ViewColumn = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.label1 = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            this.SuspendLayout();
+            dataGridView1 = new DataGridView();
+            Nom = new DataGridViewTextBoxColumn();
+            Prix = new DataGridViewTextBoxColumn();
+            Quantite = new DataGridViewTextBoxColumn();
+            Categorie = new DataGridViewTextBoxColumn();
+            ViewColumn = new DataGridViewButtonColumn();
+            label1 = new Label();
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            SuspendLayout();
+
             // 
             // dataGridView1
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Nom,
-            this.Prix,
-            this.Quantite,
-            this.Categorie,
-            this.ViewColumn});
-            this.dataGridView1.Location = new System.Drawing.Point(32, 114);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowTemplate.Height = 25;
-            this.dataGridView1.Size = new System.Drawing.Size(714, 150);
-            this.dataGridView1.TabIndex = 0;
+            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { Nom, Prix, Quantite, Categorie, ViewColumn });
+            dataGridView1.Location = new Point(32, 114);
+            dataGridView1.Name = "dataGridView1";
+            dataGridView1.RowTemplate.Height = 25;
+            dataGridView1.Size = new Size(714, 150);
+            dataGridView1.TabIndex = 0;
+            dataGridView1.CellContentClick += dataGridView1_CellContentClick;
+
             // 
             // Nom
             // 
-            this.Nom.HeaderText = "Nom";
-            this.Nom.Name = "Nom";
+            Nom.HeaderText = "Nom";
+            Nom.Name = "Nom";
+
             // 
             // Prix
             // 
-            this.Prix.HeaderText = "Prix";
-            this.Prix.Name = "Prix";
+            Prix.HeaderText = "Prix";
+            Prix.Name = "Prix";
+
             // 
             // Quantite
             // 
-            this.Quantite.HeaderText = "Quantite";
-            this.Quantite.Name = "Quantite";
+            Quantite.HeaderText = "Quantite";
+            Quantite.Name = "Quantite";
+
             // 
             // Categorie
             // 
-            this.Categorie.HeaderText = "Categorie";
-            this.Categorie.Name = "Categorie";
+            Categorie.HeaderText = "Categorie";
+            Categorie.Name = "Categorie";
+
             // 
             // ViewColumn
             // 
-            this.ViewColumn.HeaderText = "-------------";
-            this.ViewColumn.Name = "ViewColumn";
-            this.ViewColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.ViewColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            ViewColumn.HeaderText = "Action";
+            ViewColumn.Name = "ViewColumn";
+            ViewColumn.Text = "Afficher";
+            ViewColumn.UseColumnTextForButtonValue = true;
+
             // 
             // label1
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label1.Location = new System.Drawing.Point(32, 69);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(96, 21);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "Vos articles";
+            label1.AutoSize = true;
+            label1.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            label1.Location = new Point(32, 69);
+            label1.Name = "label1";
+            label1.Size = new Size(96, 21);
+            label1.TabIndex = 1;
+            label1.Text = "Vos articles";
+
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.dataGridView1);
-            this.Name = "Form1";
-            this.Text = "Form1";
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            this.ResumeLayout(false);
-            this.PerformLayout();
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(800, 450);
+            Controls.Add(label1);
+            Controls.Add(dataGridView1);
+            Name = "Form1";
+            Text = "Gestionnaire du magasin";
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            ResumeLayout(false);
+            PerformLayout();
 
+
+
+            btnAddArticle = new Button();
+            btnAddArticle.Location = new Point(32, 300);
+            btnAddArticle.Name = "btnAddArticle";
+            btnAddArticle.Size = new Size(150, 30);
+            btnAddArticle.Text = "Ajouter un article";
+            btnAddArticle.UseVisualStyleBackColor = true;
+            btnAddArticle.Click += BtnAddArticle_Click;
+
+            Controls.Add(btnAddArticle);
         }
-
-        #endregion
-        private DataGridView dataGridView1;
-        private DataGridViewButtonColumn View;
-        private DataGridViewTextBoxColumn Nom;
-        private DataGridViewTextBoxColumn Prix;
-        private DataGridViewTextBoxColumn Quantite;
-        private DataGridViewTextBoxColumn Categorie;
-        private DataGridViewButtonColumn ViewColumn;
-        private Label label1;
     }
 }
