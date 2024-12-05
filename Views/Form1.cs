@@ -18,7 +18,6 @@ namespace Views
 
         public Form1()
         {
-
             InitializeComponent();
             InitializeArticles();
             PopulateDataGridView();
@@ -28,20 +27,48 @@ namespace Views
 
         private void InitializeArticles()
         {
-            articles = new List<ArticleType>
-            {
-                new ArticleType("Pomme", 2.5m, 50, TypeArticle.Alimentaire),
-                new ArticleType("Savon", 3.2m, 30, TypeArticle.Droguerie),
-                new ArticleType("T-shirt", 15.0m, 20, TypeArticle.Habillement),
-                new ArticleType("Jeu vidéo", 60.0m, 10, TypeArticle.Loisir)
-            };
+            string jsonString = File.ReadAllText("articles.json");
+            articles = JsonSerializer.Deserialize<List<ArticleType>>(jsonString);
+
         }
 
         private void InitializePanier()
         {
             panier = new List<ArticlePanier>();
         }
-        
+        private void BtnSaveArticles_Click(object sender, EventArgs e)
+        {
+            SaveArticlesToFile(articles);
+        }
+
+
+        private void SaveArticlesToFile(List<ArticleType> articles)
+        {
+            var options = new JsonSerializerOptions
+            {
+                WriteIndented = true // Pour une sortie lisible
+            };
+
+            try
+            {
+                // Sérialiser la liste des articles en JSON
+                string jsonString = JsonSerializer.Serialize(articles, options);
+                Console.WriteLine(jsonString);
+
+                // Sauvegarder le JSON dans un fichier
+                File.WriteAllText("articles.json", jsonString);
+
+
+                // afficher un message de succès avec les articles sauvegardés
+                MessageBox.Show("Les articles ont été sauvegardés avec succès dans le dossier ", "Succès", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                // Si une erreur se produit, affichez un message d'erreur
+                MessageBox.Show($"Erreur lors de la sauvegarde des articles : {ex.Message}", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
 
 
         private void PopulateDataGridView()
@@ -75,49 +102,6 @@ namespace Views
                 dataGridViewPanier.Rows.Add(article.Nom, article.Prix, article.Quantite);
             }
         }
-       
-
-
-        private void BtnAddToCart_Click(object sender, EventArgs e)
-        {
-            // Sélectionnez l'article de la DataGridView principale
-            var selectedRow = dataGridView1.SelectedRows[0];
-            string nom = selectedRow.Cells["Nom"].Value.ToString();
-            var article = articles.FirstOrDefault(a => a.Nom == nom);
-
-            if (article.Nom != null)
-            {
-                // Vérifiez si l'article est déjà dans le panier
-                var existingArticle = panier.FirstOrDefault(p => p.Nom == article.Nom);
-                if (existingArticle != null) {
-                    // Si l'article est déjà dans le panier, augmentez la quantité
-                    existingArticle.Quantite++;
-                }
-                else
-                {
-                    // Sinon, ajoutez le nouvel article
-                    panier.Add(new ArticlePanier(article.Nom, article.Prix, 1));
-                }
-
-                PopulatePanierDataGridView(); // Mettez à jour l'affichage du panier
-            }
-        }
-
-        private void BtnRemoveFromCart_Click(object sender, EventArgs e)
-        {
-            var selectedRow = dataGridViewPanier.SelectedRows[0];
-            string nom = selectedRow.Cells["Nom"].Value.ToString();
-            var article = panier.FirstOrDefault(a => a.Nom == nom);
-
-            if (article.Nom != null)
-            {
-                panier.Remove(article);
-                PopulatePanierDataGridView(); // Mettez à jour l'affichage du panier
-            }
-        }
-
-       
-
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.ColumnIndex == dataGridView1.Columns["AddToCartColumn"].Index && e.RowIndex >= 0)
@@ -141,6 +125,16 @@ namespace Views
                 }
 
                 MessageBox.Show($"L'article {article.Nom} a été ajouté au panier.");
+            }
+            if (e.RowIndex >= 0 && e.ColumnIndex == dataGridView1.Columns["ViewColumn"].Index)
+            {
+                string nom = dataGridView1.Rows[e.RowIndex].Cells["Nom"].Value.ToString();
+                var article = articles.FirstOrDefault(a => a.Nom == nom);
+                if (article.Nom != null)
+                {
+                    MessageBox.Show(JsonSerializer.Serialize(article));
+                }
+
             }
         }
 

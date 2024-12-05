@@ -18,11 +18,8 @@ namespace Views
         private Button btnAddArticle;
         private DataGridView dataGridViewPanier;
         private Button btnAddToCart;
-        private Button btnRemoveFromCart;
-        private Label lblTotal;
         private Button btnPanier;
-
-
+        private Button saveArticles;
 
         protected override void Dispose(bool disposing)
         {
@@ -90,17 +87,6 @@ namespace Views
             ViewColumn.UseColumnTextForButtonValue = true;
 
             // 
-            // label1
-            // 
-            //label1.AutoSize = true;
-            //label1.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            //label1.Location = new Point(32, 69);
-            //label1.Name = "label1";
-            //label1.Size = new Size(96, 21);
-            //label1.TabIndex = 1;
-            //label1.Text = "Vos articles";
-
-            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -113,7 +99,6 @@ namespace Views
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);
             PerformLayout();
-
 
             btnAddArticle = new Button();
             btnAddArticle.Location = new Point(32, 300);
@@ -139,8 +124,13 @@ namespace Views
             btnPanier.Click += btnPanier_Click;
             Controls.Add(btnPanier);
 
+            saveArticles = new Button();
+            saveArticles.Location = new Point(650, 350);
+            saveArticles.Size = new Size(100, 50);
+            saveArticles.Text = "Sauvegarder les articles";
+            saveArticles.Click += BtnSaveArticles_Click;
+            Controls.Add(saveArticles);
         }
-
 
         //private Label label1;
     }

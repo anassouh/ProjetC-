@@ -6,15 +6,7 @@ using System.Threading.Tasks;
 
 namespace Views
 {
-    public enum TypeArticle
-    {
-        Alimentaire,
-        Droguerie,
-        Habillement,
-        Loisir
-    }
-
-    public struct ArticleType
+    public class ArticleType
     {
         public string Nom { get; set; }
         public decimal Prix { get; set; }
@@ -29,4 +21,14 @@ namespace Views
             Type = type;
         }
     }
+
+    public enum TypeArticle
+    {
+        Alimentaire,
+        Droguerie,
+        Habillement,
+        Loisir
+    }
+
 }
+

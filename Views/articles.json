@@ -1,0 +1,38 @@
+[
+  {
+    "Nom": "Pomme",
+    "Prix": 1.99,
+    "Quantite": 10,
+    "Type": 0
+  },
+  {
+    "Nom": "Banane",
+    "Prix": 2.99,
+    "Quantite": 5,
+    "Type": 0
+  },
+  {
+    "Nom": "Pantalon",
+    "Prix": 19.99,
+    "Quantite": 3,
+    "Type": 2
+  },
+  {
+    "Nom": "T-shirt",
+    "Prix": 9.99,
+    "Quantite": 7,
+    "Type": 2
+  },
+  {
+    "Nom": "Shampooing",
+    "Prix": 5.99,
+    "Quantite": 2,
+    "Type": 1
+  },
+  {
+    "Nom": "Ballon de foot",
+    "Prix": 15.99,
+    "Quantite": 4,
+    "Type": 3
+  }
+]
