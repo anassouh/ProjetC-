@@ -9,10 +9,11 @@ namespace Views
 {
     public partial class Form1 : Form
     {
-        
 
+        
         private List<ArticleType> articles;
-        private List<ArticlePanier> panier = new List<ArticlePanier>();  
+        private List<ArticlePanier> panier = new List<ArticlePanier>();
+        public static List<string> commandesValidees { get; set; } = new List<string>();
 
         public Form1()
         {
