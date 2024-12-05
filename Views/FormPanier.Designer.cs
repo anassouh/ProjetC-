@@ -75,8 +75,36 @@
             Controls.Add(lblTotal);
             Controls.Add(lstCommandesSauvegardees);
             Text = "Panier";
-        }
 
-        
+            ComboBox cmbTypePromotion = new ComboBox
+            {
+                Location = new Point(30, 350),
+                Size = new Size(150, 30),
+                Name = "cmbTypePromotion",
+                DropDownStyle = ComboBoxStyle.DropDownList
+            };
+            cmbTypePromotion.Items.AddRange(new[] { "Pourcentage", "MontantFixe" });
+            Controls.Add(cmbTypePromotion);
+
+            TextBox txtValeurPromotion = new TextBox
+            {
+                Location = new Point(200, 350),
+                Size = new Size(100, 30),
+                Name = "txtValeurPromotion",
+                PlaceholderText = "Valeur"
+            };
+            Controls.Add(txtValeurPromotion);
+
+            Button btnAppliquerPromotion = new Button
+            {
+                Location = new Point(320, 350),
+                Size = new Size(150, 30),
+                Text = "Appliquer Promotion",
+                Name = "btnAppliquerPromotion"
+            };
+            btnAppliquerPromotion.Click += BtnAppliquerPromotion_Click;
+            Controls.Add(btnAppliquerPromotion);
+
+        }
     }
 }

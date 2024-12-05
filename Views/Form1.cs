@@ -9,10 +9,11 @@ namespace Views
 {
     public partial class Form1 : Form
     {
+       
 
-        
         private List<ArticleType> articles;
         private List<ArticlePanier> panier = new List<ArticlePanier>();
+ 
         public static List<string> commandesValidees { get; set; } = new List<string>();
 
         public Form1()
@@ -74,6 +75,7 @@ namespace Views
                 dataGridViewPanier.Rows.Add(article.Nom, article.Prix, article.Quantite);
             }
         }
+       
 
 
         private void BtnAddToCart_Click(object sender, EventArgs e)
@@ -114,16 +116,7 @@ namespace Views
             }
         }
 
-        private decimal CalculerTotalPanier()
-        {
-            decimal total = 0;
-            foreach (var article in panier)
-            {
-                total += article.Prix * article.Quantite;
-            }
-            return total;
-        }
-
+       
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -159,5 +152,8 @@ namespace Views
                 formPanier.ShowDialog();
             }
         }
+       
+        
+
     }
 }
