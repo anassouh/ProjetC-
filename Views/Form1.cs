@@ -9,6 +9,32 @@ namespace Views
 {
     public partial class Form1 : Form
     {
+        public enum TypeArticle
+        {
+            Alimentaire,
+            Droguerie,
+            Habillement,
+            Loisir
+        }
+
+        public struct ArticleType
+        {
+            public string Nom { get; set; }
+            public decimal Prix { get; set; }
+            public int Quantite { get; set; }
+            public TypeArticle Type { get; set; }
+
+            public ArticleType(string nom, decimal prix, int quantite, TypeArticle type)
+            {
+                Nom = nom;
+                Prix = prix;
+                Quantite = quantite;
+                Type = type;
+            }
+        }
+
+        private List<ArticleType> articles;
+
         public Form1()
         {
             InitializeComponent();
