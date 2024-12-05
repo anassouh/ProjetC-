@@ -89,7 +89,7 @@ namespace Views
             btnCancel.Size = new Size(75, 30);
             btnCancel.Text = "Annuler";
             btnCancel.UseVisualStyleBackColor = true;
-            btnCancel.Click += (s, e) => DialogResult = DialogResult.Cancel;
+            //btnCancel.Click += (s, e) => DialogResult = DialogResult.Cancel;
 
             // FormAddArticle
             AutoScaleDimensions = new SizeF(7F, 15F);

@@ -13,11 +13,15 @@ namespace Views
         private DataGridViewTextBoxColumn Quantite;
         private DataGridViewTextBoxColumn Categorie;
         private DataGridViewButtonColumn ViewColumn;
+        private DataGridViewButtonColumn AddToCartColumn;
         private Label label1;
         private Button btnAddArticle;
+        private DataGridView dataGridViewPanier;
+        private Button btnAddToCart;
+        private Button btnRemoveFromCart;
+        private Label lblTotal;
+        private Button btnPanier;
 
-        // Dans la méthode InitializeComponent() :
-        
 
 
         protected override void Dispose(bool disposing)
@@ -111,7 +115,6 @@ namespace Views
             PerformLayout();
 
 
-
             btnAddArticle = new Button();
             btnAddArticle.Location = new Point(32, 300);
             btnAddArticle.Name = "btnAddArticle";
@@ -121,7 +124,23 @@ namespace Views
             btnAddArticle.Click += BtnAddArticle_Click;
 
             Controls.Add(btnAddArticle);
+
+            AddToCartColumn = new DataGridViewButtonColumn();
+            AddToCartColumn.HeaderText = "Ajouter au Panier";
+            AddToCartColumn.Name = "AddToCartColumn";
+            AddToCartColumn.Text = "Ajouter";
+            AddToCartColumn.UseColumnTextForButtonValue = true;
+            dataGridView1.Columns.Add(AddToCartColumn);
+
+            btnPanier = new Button();
+            btnPanier.Location = new Point(650, 300);
+            btnPanier.Size = new Size(100, 30);
+            btnPanier.Text = "Panier";
+            btnPanier.Click += btnPanier_Click;
+            Controls.Add(btnPanier);
+
         }
+
         //private Label label1;
     }
 }
