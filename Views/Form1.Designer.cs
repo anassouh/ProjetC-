@@ -122,5 +122,6 @@ namespace Views
 
             Controls.Add(btnAddArticle);
         }
+        private Label label1;
     }
 }
