@@ -17,6 +17,7 @@ namespace Views
         private TypePromotion typePromotion;
         private decimal valeurPromotion;
         private decimal totalApresPromotion = 0;
+        private Commande commande;
 
 
         public FormPanier(List<ArticlePanier> panier)
@@ -24,6 +25,7 @@ namespace Views
             InitializeComponent();
             this.panier = panier;
             PopulatePanierDataGridView();
+            commande = new Commande(DateTime.Now.Ticks.GetHashCode());
         }
 
         private void PopulatePanierDataGridView()
@@ -36,6 +38,17 @@ namespace Views
             UpdateTotalPanier();
         }
 
+        private void BtnValiderCommande_Click(object sender, EventArgs e)
+        {
+            commande.ValiderCommande(); // Appeler la méthode de validation de la commande
+            lblEtatCommande.Text = $"Etat : {commande.Etat}"; // Mettre à jour l'affichage de l'état
+        }
+
+        private void BtnAnnulerCommande_Click(object sender, EventArgs e)
+        {
+            commande.AnnulerCommande(); // Appeler la méthode d'annulation de la commande
+            lblEtatCommande.Text = $"Etat : {commande.Etat}"; // Mettre à jour l'affichage de l'état
+        }
         private void UpdateTotalPanier()
         {
             decimal total = panier.Sum(article => article.Total);

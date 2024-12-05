@@ -9,6 +9,9 @@
         private Button btnFermer;
         private Label lblTotal;
         private ListBox lstCommandesSauvegardees;
+        private Button btnValiderCommande;
+        private Button btnAnnulerCommande;
+        private Label lblEtatCommande;
 
 
 
@@ -42,7 +45,7 @@
             btnSauvegarderCommande.Location = new Point(140, 200);
             btnSauvegarderCommande.Name = "btnSauvegarderCommande";
             btnSauvegarderCommande.Size = new Size(200, 30);
-            btnSauvegarderCommande.Text = "Sauvegarder la commande";
+            btnSauvegarderCommande.Text = "Passer la commande";
             btnSauvegarderCommande.UseVisualStyleBackColor = true;
             btnSauvegarderCommande.Click += BtnSauvegarderCommande_Click;
 
@@ -104,6 +107,34 @@
             };
             btnAppliquerPromotion.Click += BtnAppliquerPromotion_Click;
             Controls.Add(btnAppliquerPromotion);
+
+            lblEtatCommande = new Label
+            {
+                Location = new Point(400, 180),
+                Size = new Size(150, 30),
+                Text = "Etat : En Attente"
+            };
+            Controls.Add(lblEtatCommande);
+
+            // Ajouter le bouton Valider Commande
+            btnValiderCommande = new Button
+            {
+                Location = new Point(140, 250),
+                Size = new Size(150, 30),
+                Text = "Valider Commande"
+            };
+            btnValiderCommande.Click += BtnValiderCommande_Click;
+            Controls.Add(btnValiderCommande);
+
+            // Ajouter le bouton Annuler Commande
+            btnAnnulerCommande = new Button
+            {
+                Location = new Point(320, 250),
+                Size = new Size(150, 30),
+                Text = "Annuler Commande"
+            };
+            btnAnnulerCommande.Click += BtnAnnulerCommande_Click;
+            Controls.Add(btnAnnulerCommande);
 
         }
     }
