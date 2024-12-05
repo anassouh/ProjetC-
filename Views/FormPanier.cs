@@ -58,5 +58,39 @@ namespace Views
         {
             this.Close(); // Fermer la fenêtre du panier
         }
+        private void BtnSauvegarderCommande_Click(object sender, EventArgs e)
+        {
+            if (!panier.Any())
+            {
+                MessageBox.Show("Le panier est vide. Ajoutez des articles avant de sauvegarder.");
+                return;
+            }
+
+            // Générer un nom de commande
+            string commandeNom = $"Commande_{DateTime.Now:yyyyMMdd_HHmmss}";
+
+            // Calculer le total de la commande
+            decimal total = panier.Sum(article => article.Total);
+
+            // Sauvegarder la commande dans la liste des commandes validées
+            string commandeDetails = $"{commandeNom} - Total : {total:C}";
+            Form1.commandesValidees.Add(commandeDetails);
+
+            // Effacer l'affichage actuel des commandes sauvegardées
+            lstCommandesSauvegardees.Items.Clear();
+
+            // Ajouter la liste des commandes mises à jour
+            lstCommandesSauvegardees.Items.AddRange(Form1.commandesValidees.ToArray());
+
+            // Vider le panier après sauvegarde
+            panier.Clear();
+            PopulatePanierDataGridView();
+
+            // Mettre à jour le total du panier (vide)
+            lblTotal.Text = "Total : 0,00 €";
+
+            MessageBox.Show($"Commande sauvegardée : {commandeNom} avec un total de {total:C}");
+        }
+
     }
 }

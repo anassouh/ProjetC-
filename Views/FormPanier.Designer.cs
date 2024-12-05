@@ -77,32 +77,6 @@
             Text = "Panier";
         }
 
-        private void BtnSauvegarderCommande_Click(object sender, EventArgs e)
-        {
-            if (!panier.Any())
-            {
-                MessageBox.Show("Le panier est vide. Ajoutez des articles avant de sauvegarder.");
-                return;
-            }
-
-            // Générer un nom de commande
-            string commandeNom = $"Commande_{DateTime.Now:yyyyMMdd_HHmmss}";
-
-            // Calculer le total de la commande
-            decimal total = panier.Sum(article => article.Total);
-
-            // Sauvegarder la commande dans la liste des commandes validées
-            string commandeDetails = $"{commandeNom} - Total : {total:C}";
-            Form1.commandesValidees.Add(commandeDetails);
-
-            // Afficher la commande dans le ListBox
-            lstCommandesSauvegardees.Items.AddRange(Form1.commandesValidees.ToArray());
-
-            // Vider le panier après sauvegarde
-            panier.Clear();
-            PopulatePanierDataGridView();
-
-            MessageBox.Show($"Commande sauvegardée : {commandeNom} avec un total de {total:C}");
-        }
+        
     }
 }
