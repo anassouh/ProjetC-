@@ -124,19 +124,31 @@ namespace Views
                     panier.Add(article);
                 }
 
+                // Mettre à jour la quantité de l'article dans la liste des articles
+                var articleInList = articles.FirstOrDefault(a => a.Nom == nom);
+                if (articleInList != null && articleInList.Quantite > 0)
+                {
+                    articleInList.Quantite--; // Réduire la quantité de l'article dans la liste
+                }
+
+                // Mettre à jour l'affichage du DataGridView avec les nouvelles quantités
+                PopulateDataGridView();
+
                 MessageBox.Show($"L'article {article.Nom} a été ajouté au panier.");
             }
+
             if (e.RowIndex >= 0 && e.ColumnIndex == dataGridView1.Columns["ViewColumn"].Index)
             {
                 string nom = dataGridView1.Rows[e.RowIndex].Cells["Nom"].Value.ToString();
                 var article = articles.FirstOrDefault(a => a.Nom == nom);
-                if (article.Nom != null)
+                if (article != null)
                 {
                     MessageBox.Show(JsonSerializer.Serialize(article));
                 }
-
             }
         }
+
+
 
         private void btnPanier_Click(object sender, EventArgs e)
         {
