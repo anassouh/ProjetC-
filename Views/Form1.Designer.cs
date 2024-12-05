@@ -107,7 +107,6 @@
 
         #endregion
         private DataGridView dataGridView1;
-        private DataGridViewButtonColumn View;
         private DataGridViewTextBoxColumn Nom;
         private DataGridViewTextBoxColumn Prix;
         private DataGridViewTextBoxColumn Quantite;
