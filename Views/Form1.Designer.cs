@@ -47,7 +47,7 @@ namespace Views
             // 
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView1.Columns.AddRange(new DataGridViewColumn[] { Nom, Prix, Quantite, Categorie, ViewColumn });
-            dataGridView1.Location = new Point(32, 114);
+            dataGridView1.Location = new Point(32, 50);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RowTemplate.Height = 25;
             dataGridView1.Size = new Size(714, 150);
