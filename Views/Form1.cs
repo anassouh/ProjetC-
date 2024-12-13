@@ -74,7 +74,8 @@ namespace Views
         private void PopulateDataGridView()
         {
             dataGridView1.Rows.Clear();
-            foreach (var article in articles)
+            MessageBox.Show(articles.Where(a => a == null).Count().ToString());
+            foreach (var article in articles.Where(a=>!string.IsNullOrEmpty(a.Nom)))
             {
                 dataGridView1.Rows.Add(article.Nom, article.Prix, article.Quantite, article.Type, "Afficher");
             }
